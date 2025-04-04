@@ -1,0 +1,147 @@
+﻿@page "/"
+@using MudBlazor
+@using Microsoft.JSInterop
+@using System.Net.Http.Json
+@using Markdig
+@using HealthcareChatbot.Services
+@inject ApiService ApiService
+@inject IJSRuntime JSRuntime
+
+<div style="
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;">
+
+    <!-- Drawer for Chat History -->
+    <MudDrawer Open="true" Anchor="Anchor.Left" Elevation="4" Width="300px" Class="p-4">
+        <MudButton Variant="Variant.Filled" OnClick="NewChat" Class="mb-4">
+            New Chat
+        </MudButton>
+        <MudDivider />
+    </MudDrawer>
+
+    <!-- Main Chat Interface -->
+    <MudContainer MaxWidth="MaxWidth.Medium" Class="d-flex flex-column align-items-center" Style="width: 100%;">
+        <MudPaper Elevation="4" Class="p-6 rounded-lg" Style="width: 100%; text-align: center;">
+            <!-- Header -->
+            <MudText Typo="Typo.h3" Class="mb-4" Color="Color.Primary" Align="Align.Center" Style="font-weight: bold;">
+                Healthcare Chatbot
+            </MudText>
+            <MudText Typo="Typo.body1" Class="mb-4" Color="Color.Secondary">
+                Your assistant for health-related queries.
+            </MudText>
+
+            <!-- Chat Box -->
+            <MudPaper Elevation="1" Class="p-4 mb-4" Style="height: 300px; overflow-y: auto; border: 1px solid #e0e0e0; border-radius: 8px;" id="chat-box">
+                @foreach (var message in Messages)
+                {
+                    @if (message.StartsWith("Bot:"))
+                    {
+                        <MudText Typo="Typo.body2" Style="background-color: #D1C4E9; padding: 10px; border-radius: 8px;">
+                            @((MarkupString)RenderMarkdown(message.Replace("Bot: ", "")))
+                        </MudText>
+                    }
+                    else
+                    {
+                        <MudText Typo="Typo.body2" Style="background-color: #BBDEFB; padding: 10px; border-radius: 8px; text-align: right;">
+                            @message
+                        </MudText>
+                    }
+                }
+                @if (IsLoading)
+                {
+                    <MudText Typo="Typo.body2" Style="background-color: #E0E0E0; padding: 10px; border-radius: 8px;">
+                        Bot is typing...
+                    </MudText>
+                }
+            </MudPaper>
+
+            <!-- Input Section -->
+            <div class="d-flex align-items-center" style="justify-content: center; margin-top: 1rem;">
+                <MudPaper Elevation="2" Class="p-3" Style="border: 1px solid #e0e0e0; background-color: white; display: flex; align-items: center; border-radius: 8px; width: 100%;">
+                    <textarea @bind="UserInput" placeholder="Type your message here..." style="resize: vertical; border: 1px solid #e0e0e0; padding: 10px; border-radius: 8px; width: 100%;"></textarea>
+                    <MudButton Variant="Variant.Text" OnClick="SendMessage" Disabled="@IsLoading">
+                        Send
+                    </MudButton>
+                </MudPaper>
+            </div>
+
+            <!-- Suggested Queries -->
+            <div class="d-flex flex-wrap mt-4" style="gap: 0.5rem; justify-content: center;">
+                @foreach (var suggestion in SuggestedQueries)
+                {
+                    <MudButton Variant="Variant.Outlined" Color="Color.Secondary" OnClick="@(() => SetQuery(suggestion))" Disabled="@IsLoading">
+                        @suggestion
+                    </MudButton>
+                }
+            </div>
+        </MudPaper>
+    </MudContainer>
+</div>
+
+@code {
+    private string UserInput = "";
+    private bool IsLoading = false;
+    private List<string> Messages = new();
+    private List<string> SuggestedQueries = new() { "Loading suggestions..." };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await FetchSampleQueries();
+    }
+
+    private async Task FetchSampleQueries()
+    {
+        try
+        {
+            SuggestedQueries = await ApiService.GetSampleQueriesAsync();
+        }
+        catch
+        {
+            SuggestedQueries = new() { "What are the symptoms of flu?", "How to manage diabetes?", "Tips for better sleep" };
+        }
+    }
+
+    private async Task SendMessage()
+    {
+        if (!string.IsNullOrWhiteSpace(UserInput))
+        {
+            Messages.Add($"You: {UserInput}");
+            try
+            {
+                IsLoading = true;
+                var response = await ApiService.GenerateResponseAsync(UserInput);
+                Messages.Add($"Bot: {response}");
+            }
+            catch
+            {
+                Messages.Add("Bot: Could not connect to the server.");
+            }
+            finally
+            {
+                IsLoading = false;
+                UserInput = "";
+                await JSRuntime.InvokeVoidAsync("scrollToBottom", "chat-box");
+            }
+        }
+    }
+
+    private void NewChat()
+    {
+        Messages.Clear();
+        SuggestedQueries = new() { "What are the symptoms of flu?", "How to manage diabetes?", "Tips for better sleep" };
+    }
+
+    private string RenderMarkdown(string markdown)
+    {
+        return Markdown.ToHtml(markdown);
+    }
+
+    private async Task SetQuery(string query)
+    {
+        UserInput = query;
+        await SendMessage();
+    }
+}

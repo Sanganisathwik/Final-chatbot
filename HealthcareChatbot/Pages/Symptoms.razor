@@ -1,0 +1,74 @@
+@page "/symptoms"
+@using HealthcareChatbot.Services
+@inject ApiService ApiService
+@using MudBlazor
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-4">
+    <MudPaper Elevation="3" Class="pa-4">
+        <MudText Typo="Typo.h5" Class="mb-4">Symptom Checker</MudText>
+        
+        <MudText Typo="Typo.body1" Class="mb-4">
+            Enter your symptoms below (one per line) and we'll help identify possible conditions.
+        </MudText>
+
+        <MudTextField @bind-Value="symptomsInput"
+                     Label="Symptoms"
+                     Lines="4"
+                     Placeholder="Enter your symptoms, one per line..."
+                     Variant="Variant.Outlined"
+                     Class="mb-4" />
+
+        <MudButton Variant="Variant.Filled"
+                  Color="Color.Primary"
+                  OnClick="CheckSymptoms"
+                  Disabled="@isLoading"
+                  Class="mb-4">
+            Check Symptoms
+        </MudButton>
+
+        @if (isLoading)
+        {
+            <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+        }
+
+        @if (!string.IsNullOrEmpty(result))
+        {
+            <MudPaper Elevation="1" Class="pa-4 mt-4">
+                <MudText Typo="Typo.h6" Class="mb-2">Analysis Result:</MudText>
+                <MudText>@result</MudText>
+            </MudPaper>
+        }
+    </MudPaper>
+</MudContainer>
+
+@code {
+    private string symptomsInput = string.Empty;
+    private string result = string.Empty;
+    private bool isLoading = false;
+
+    private async Task CheckSymptoms()
+    {
+        if (string.IsNullOrWhiteSpace(symptomsInput)) return;
+
+        var symptoms = symptomsInput.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries)
+                                  .Select(s => s.Trim())
+                                  .Where(s => !string.IsNullOrEmpty(s))
+                                  .ToList();
+
+        if (!symptoms.Any()) return;
+
+        isLoading = true;
+        try
+        {
+            result = await ApiService.DetectDiseaseAsync(symptoms);
+        }
+        catch (Exception ex)
+        {
+            result = $"Error: {ex.Message}";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+} 

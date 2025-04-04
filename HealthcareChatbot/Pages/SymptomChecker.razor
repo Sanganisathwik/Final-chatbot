@@ -1,0 +1,92 @@
+@page "/symptom-checker"
+@using HealthcareChatbot.Services
+@inject ApiService ApiService
+@inject ISnackbar Snackbar
+@using MudBlazor
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-4">
+    <MudPaper Elevation="3" Class="pa-4">
+        <MudText Typo="Typo.h5" Class="mb-4">Symptom Checker</MudText>
+        
+        <MudAlert Severity="Severity.Info" Class="mb-4">
+            Enter your symptoms below and our AI will help identify possible conditions.
+            Please note that this is for informational purposes only and should not replace professional medical advice.
+        </MudAlert>
+
+        <MudTextField @bind-Value="symptoms" 
+                     Label="Describe your symptoms"
+                     Variant="Variant.Outlined"
+                     Lines="3"
+                     Class="mb-4"
+                     HelperText="Separate multiple symptoms with commas, semicolons, or new lines"
+                     Disabled="@isLoading" />
+
+        <MudButton Variant="Variant.Filled" 
+                  Color="Color.Primary" 
+                  OnClick="CheckSymptoms"
+                  Disabled="@isLoading"
+                  StartIcon="@Icons.Material.Filled.Search">
+            @(isLoading ? "Analyzing..." : "Check Symptoms")
+        </MudButton>
+
+        @if (isLoading)
+        {
+            <MudProgressCircular Class="mt-4" Indeterminate="true" />
+        }
+
+        @if (!string.IsNullOrEmpty(result))
+        {
+            <MudPaper Elevation="1" Class="pa-4 mt-4 result-paper">
+                <MudText Typo="Typo.h6" Class="mb-2">Analysis Results:</MudText>
+                <MudText>@result</MudText>
+            </MudPaper>
+        }
+    </MudPaper>
+</MudContainer>
+
+<style>
+    .result-paper {
+        background-color: var(--mud-palette-background-grey);
+        border-radius: 1rem;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .result-paper:hover {
+        transform: scale(1.01);
+    }
+</style>
+
+@code {
+    private string symptoms = string.Empty;
+    private string result = string.Empty;
+    private bool isLoading = false;
+
+    private async Task CheckSymptoms()
+    {
+        if (string.IsNullOrWhiteSpace(symptoms))
+        {
+            Snackbar.Add("Please enter your symptoms", Severity.Warning);
+            return;
+        }
+
+        isLoading = true;
+        result = string.Empty;
+        try
+        {
+            var symptomsList = symptoms.Split(new[] { ',', ';', '\n' }, StringSplitOptions.RemoveEmptyEntries)
+                                     .Select(s => s.Trim())
+                                     .ToList();
+            result = await ApiService.DetectDiseaseAsync(symptomsList);
+            Snackbar.Add("Analysis completed", Severity.Success);
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add("Error: Failed to analyze symptoms", Severity.Error);
+            result = "Sorry, I encountered an error while analyzing your symptoms. Please try again.";
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+} 

@@ -1,0 +1,36 @@
+@inherits LayoutComponentBase
+@using MudBlazor
+@using HealthcareChatbot.Services
+@inject ThemeService ThemeService
+@inject ISnackbar Snackbar
+
+<MudThemeProvider @bind-IsDarkMode="@ThemeService.IsDarkMode" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <MudIconButton Icon="@Icons.Material.Filled.Brightness4" 
+                          Color="Color.Inherit" 
+                          OnClick="@ToggleDarkMode" 
+                          Title="@(ThemeService.IsDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode")" />
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    private void ToggleDarkMode()
+    {
+        ThemeService.IsDarkMode = !ThemeService.IsDarkMode;
+        Snackbar.Add($"Switched to {(ThemeService.IsDarkMode ? "Dark" : "Light")} Mode", Severity.Success);
+    }
+} 

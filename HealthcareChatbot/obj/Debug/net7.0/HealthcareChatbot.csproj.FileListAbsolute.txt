@@ -1,0 +1,6 @@
+C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net7.0\HealthcareChatbot.csproj.AssemblyReference.cache
+C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net7.0\HealthcareChatbot.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net7.0\HealthcareChatbot.AssemblyInfoInputs.cache
+C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net7.0\HealthcareChatbot.AssemblyInfo.cs
+C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net7.0\HealthcareChatbot.csproj.CoreCompileInputs.cache
+C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net7.0\HealthcareChatbot.MvcApplicationPartsAssemblyInfo.cache
