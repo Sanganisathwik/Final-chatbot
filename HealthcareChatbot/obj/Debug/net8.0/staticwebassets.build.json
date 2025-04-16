@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bIWkoKn4U1YHGJmNuQ3gEf7EZLeufdPmAfcrMq8Qr2E=",
+  "Hash": "GfSwU9Ky6qvbj+Wa3enQFdDLQT09z7ZJZTq42pVe6o0=",
   "Source": "HealthcareChatbot",
   "BasePath": "/",
   "Mode": "Root",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "manifest",
-      "Fingerprint": "m3n7qnc1iq",
-      "Integrity": "Tnnu6+ejUn25FuvksKq9Kah+sZiKPG1cV8w1yUij71E=",
+      "Fingerprint": "fkvcazwnrt",
+      "Integrity": "MV8JDSGmUqvosJM9jJjs3mGyKIwWR/2Y1lEcFp0FNhM=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net8.0\\blazor.boot.json"
@@ -262,8 +262,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "symbol",
-      "Fingerprint": "fsnhv725b6",
-      "Integrity": "r+3ZsI96mcYNnkpjxQaJ+ApewzTDXV2JnNS0p/yqIJs=",
+      "Fingerprint": "xin2dcepla",
+      "Integrity": "Zx8t0q202oy/vFGlUxjsO9vCN27v6dxxUtm+hsORdmU=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "obj\\Debug\\net8.0\\HealthcareChatbot.pdb"
@@ -283,8 +283,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "WasmResource",
       "AssetTraitValue": "runtime",
-      "Fingerprint": "qed6h7dbvt",
-      "Integrity": "YkamVNjVQLxeqSvfeLgzcUQYAHmYGU+UPpNU28Jive8=",
+      "Fingerprint": "79yki9x3eb",
+      "Integrity": "lS/eLoCzDUuqn3bqldJg/k5KWDOLKkwFwelq5jCe/gA=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\webcil\\HealthcareChatbot.wasm"
@@ -4952,7 +4952,7 @@
       "OriginalItemSpec": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\bin\\Debug\\net8.0\\wwwroot\\_framework\\Microsoft.AspNetCore.Components.Web.wasm"
     },
     {
-      "Identity": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\4zt7mzi7wl-m3n7qnc1iq.gz",
+      "Identity": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\4zt7mzi7wl-fkvcazwnrt.gz",
       "SourceId": "HealthcareChatbot",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\",
@@ -4966,8 +4966,8 @@
       "RelatedAsset": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.boot.json",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "8cddsqls1x",
-      "Integrity": "OOfj6FA/sUDkj85fnrXgXiphVxME57ST1ejZ5UpiA/4=",
+      "Fingerprint": "466foyshv5",
+      "Integrity": "/KwG3FHG2pp0/xy+tzNFnOz49fDX7wXfDqwLjJ6KK8Y=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.boot.json"
@@ -5435,7 +5435,7 @@
       "OriginalItemSpec": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Diagnostics.DiagnosticSource.wasm"
     },
     {
-      "Identity": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\a1qqofvzsv-qed6h7dbvt.gz",
+      "Identity": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\a1qqofvzsv-79yki9x3eb.gz",
       "SourceId": "HealthcareChatbot",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\",
@@ -5449,8 +5449,8 @@
       "RelatedAsset": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\bin\\Debug\\net8.0\\wwwroot\\_framework\\HealthcareChatbot.wasm",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "keq8c2ufkc",
-      "Integrity": "VFQDpcyY8BTKln1OKHuOqn4CJVFArcWylM8654JPRnY=",
+      "Fingerprint": "z5x3w9l96c",
+      "Integrity": "pz75H4fgZVdc8be/gMzJ6DiYIDeVrr2TzrqyxGg5E7w=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\bin\\Debug\\net8.0\\wwwroot\\_framework\\HealthcareChatbot.wasm"
@@ -7892,7 +7892,7 @@
       "OriginalItemSpec": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\bin\\Debug\\net8.0\\wwwroot\\_framework\\System.Runtime.wasm"
     },
     {
-      "Identity": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\u66zzr5uve-fsnhv725b6.gz",
+      "Identity": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\u66zzr5uve-xin2dcepla.gz",
       "SourceId": "HealthcareChatbot",
       "SourceType": "Computed",
       "ContentRoot": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\",
@@ -7906,8 +7906,8 @@
       "RelatedAsset": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\bin\\Debug\\net8.0\\wwwroot\\_framework\\HealthcareChatbot.pdb",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "53afmkxm3c",
-      "Integrity": "L+nO1f2LN3jdH/KTxCJbdKKaaKnlvnFFlL8esXqYLWU=",
+      "Fingerprint": "ihae0hu3i3",
+      "Integrity": "lrCLFnl/qy4dpK5LcfRaoh1oRQJ7hAm5W/o4FEjemhc=",
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\bin\\Debug\\net8.0\\wwwroot\\_framework\\HealthcareChatbot.pdb"
@@ -8935,8 +8935,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8nyfm55djp",
-      "Integrity": "JPdvdLLlFQ9OTnFFoh+0PQ7wlfW7ylouWhjNAmYaDA0=",
+      "Fingerprint": "xoztivk9s2",
+      "Integrity": "8QdOQRhR6FFhuMlyhvZUut1y3rVjsV4KKZlPoNgM/SQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\app.css"
@@ -9019,8 +9019,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "8g30u9bq9n",
-      "Integrity": "iBxC6D+IauubwJNLmPjs7V0jeD5W4DfZ6M3LbwPVrMI=",
+      "Fingerprint": "w3xeq7xlax",
+      "Integrity": "HMU5qZ6wgfN4/o8wC3SRpqcCLSsOy5QFAjDpkSQ/ID0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
@@ -9061,8 +9061,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "rpnrzps5ng",
-      "Integrity": "z7fyHze06/5TUz3oDzrZnGpJWQjZoIJbWBVkeIf3RD4=",
+      "Fingerprint": "ij6el2v8dl",
+      "Integrity": "YnpQ6lXKwlGKzVj5BfYJ3rebKs6ZXRx7sdh9wVRlktA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\theme.js"
@@ -10107,11 +10107,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Tnnu6+ejUn25FuvksKq9Kah+sZiKPG1cV8w1yUij71E=\""
+          "Value": "\"MV8JDSGmUqvosJM9jJjs3mGyKIwWR/2Y1lEcFp0FNhM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 08:45:44 GMT"
+          "Value": "Wed, 16 Apr 2025 18:05:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10121,18 +10121,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Tnnu6+ejUn25FuvksKq9Kah+sZiKPG1cV8w1yUij71E="
+          "Value": "sha256-MV8JDSGmUqvosJM9jJjs3mGyKIwWR/2Y1lEcFp0FNhM="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json",
-      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\4zt7mzi7wl-m3n7qnc1iq.gz",
+      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\4zt7mzi7wl-fkvcazwnrt.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000112536574"
+          "Quality": "0.000112561909"
         }
       ],
       "ResponseHeaders": [
@@ -10142,15 +10142,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8885"
+          "Value": "8883"
         },
         {
           "Name": "ETag",
-          "Value": "\"OOfj6FA/sUDkj85fnrXgXiphVxME57ST1ejZ5UpiA/4=\""
+          "Value": "\"/KwG3FHG2pp0/xy+tzNFnOz49fDX7wXfDqwLjJ6KK8Y=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 08:37:00 GMT"
+          "Value": "Wed, 16 Apr 2025 17:07:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10170,19 +10170,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"Tnnu6+ejUn25FuvksKq9Kah+sZiKPG1cV8w1yUij71E=\""
+          "Value": "W/\"MV8JDSGmUqvosJM9jJjs3mGyKIwWR/2Y1lEcFp0FNhM=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Tnnu6+ejUn25FuvksKq9Kah+sZiKPG1cV8w1yUij71E="
+          "Value": "sha256-MV8JDSGmUqvosJM9jJjs3mGyKIwWR/2Y1lEcFp0FNhM="
         }
       ]
     },
     {
       "Route": "_framework/blazor.boot.json.gz",
-      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\4zt7mzi7wl-m3n7qnc1iq.gz",
+      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\4zt7mzi7wl-fkvcazwnrt.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10191,7 +10191,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "8885"
+          "Value": "8883"
         },
         {
           "Name": "Content-Type",
@@ -10199,11 +10199,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"OOfj6FA/sUDkj85fnrXgXiphVxME57ST1ejZ5UpiA/4=\""
+          "Value": "\"/KwG3FHG2pp0/xy+tzNFnOz49fDX7wXfDqwLjJ6KK8Y=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 08:37:00 GMT"
+          "Value": "Wed, 16 Apr 2025 17:07:19 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10221,7 +10221,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-OOfj6FA/sUDkj85fnrXgXiphVxME57ST1ejZ5UpiA/4="
+          "Value": "sha256-/KwG3FHG2pp0/xy+tzNFnOz49fDX7wXfDqwLjJ6KK8Y="
         }
       ]
     },
@@ -11332,7 +11332,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "45292"
+          "Value": "46796"
         },
         {
           "Name": "Content-Type",
@@ -11340,11 +11340,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"r+3ZsI96mcYNnkpjxQaJ+ApewzTDXV2JnNS0p/yqIJs=\""
+          "Value": "\"Zx8t0q202oy/vFGlUxjsO9vCN27v6dxxUtm+hsORdmU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 08:36:59 GMT"
+          "Value": "Wed, 16 Apr 2025 18:05:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -11354,18 +11354,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-r+3ZsI96mcYNnkpjxQaJ+ApewzTDXV2JnNS0p/yqIJs="
+          "Value": "sha256-Zx8t0q202oy/vFGlUxjsO9vCN27v6dxxUtm+hsORdmU="
         }
       ]
     },
     {
       "Route": "_framework/HealthcareChatbot.pdb",
-      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\u66zzr5uve-fsnhv725b6.gz",
+      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\u66zzr5uve-xin2dcepla.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000028488405"
+          "Quality": "0.000028047344"
         }
       ],
       "ResponseHeaders": [
@@ -11375,15 +11375,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "35101"
+          "Value": "35653"
         },
         {
           "Name": "ETag",
-          "Value": "\"L+nO1f2LN3jdH/KTxCJbdKKaaKnlvnFFlL8esXqYLWU=\""
+          "Value": "\"lrCLFnl/qy4dpK5LcfRaoh1oRQJ7hAm5W/o4FEjemhc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 08:36:59 GMT"
+          "Value": "Wed, 16 Apr 2025 17:00:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -11403,19 +11403,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"r+3ZsI96mcYNnkpjxQaJ+ApewzTDXV2JnNS0p/yqIJs=\""
+          "Value": "W/\"Zx8t0q202oy/vFGlUxjsO9vCN27v6dxxUtm+hsORdmU=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-r+3ZsI96mcYNnkpjxQaJ+ApewzTDXV2JnNS0p/yqIJs="
+          "Value": "sha256-Zx8t0q202oy/vFGlUxjsO9vCN27v6dxxUtm+hsORdmU="
         }
       ]
     },
     {
       "Route": "_framework/HealthcareChatbot.pdb.gz",
-      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\u66zzr5uve-fsnhv725b6.gz",
+      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\u66zzr5uve-xin2dcepla.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11424,7 +11424,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "35101"
+          "Value": "35653"
         },
         {
           "Name": "Content-Type",
@@ -11432,11 +11432,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"L+nO1f2LN3jdH/KTxCJbdKKaaKnlvnFFlL8esXqYLWU=\""
+          "Value": "\"lrCLFnl/qy4dpK5LcfRaoh1oRQJ7hAm5W/o4FEjemhc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 08:36:59 GMT"
+          "Value": "Wed, 16 Apr 2025 17:00:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -11454,7 +11454,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-L+nO1f2LN3jdH/KTxCJbdKKaaKnlvnFFlL8esXqYLWU="
+          "Value": "sha256-lrCLFnl/qy4dpK5LcfRaoh1oRQJ7hAm5W/o4FEjemhc="
         }
       ]
     },
@@ -11469,7 +11469,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "64277"
+          "Value": "66325"
         },
         {
           "Name": "Content-Type",
@@ -11477,11 +11477,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YkamVNjVQLxeqSvfeLgzcUQYAHmYGU+UPpNU28Jive8=\""
+          "Value": "\"lS/eLoCzDUuqn3bqldJg/k5KWDOLKkwFwelq5jCe/gA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 08:36:59 GMT"
+          "Value": "Wed, 16 Apr 2025 18:05:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -11491,18 +11491,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-YkamVNjVQLxeqSvfeLgzcUQYAHmYGU+UPpNU28Jive8="
+          "Value": "sha256-lS/eLoCzDUuqn3bqldJg/k5KWDOLKkwFwelq5jCe/gA="
         }
       ]
     },
     {
       "Route": "_framework/HealthcareChatbot.wasm",
-      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\a1qqofvzsv-qed6h7dbvt.gz",
+      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\a1qqofvzsv-79yki9x3eb.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000039699869"
+          "Quality": "0.000038500039"
         }
       ],
       "ResponseHeaders": [
@@ -11512,15 +11512,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "25188"
+          "Value": "25973"
         },
         {
           "Name": "ETag",
-          "Value": "\"VFQDpcyY8BTKln1OKHuOqn4CJVFArcWylM8654JPRnY=\""
+          "Value": "\"pz75H4fgZVdc8be/gMzJ6DiYIDeVrr2TzrqyxGg5E7w=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 08:36:59 GMT"
+          "Value": "Wed, 16 Apr 2025 17:00:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -11540,19 +11540,19 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"YkamVNjVQLxeqSvfeLgzcUQYAHmYGU+UPpNU28Jive8=\""
+          "Value": "W/\"lS/eLoCzDUuqn3bqldJg/k5KWDOLKkwFwelq5jCe/gA=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-YkamVNjVQLxeqSvfeLgzcUQYAHmYGU+UPpNU28Jive8="
+          "Value": "sha256-lS/eLoCzDUuqn3bqldJg/k5KWDOLKkwFwelq5jCe/gA="
         }
       ]
     },
     {
       "Route": "_framework/HealthcareChatbot.wasm.gz",
-      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\a1qqofvzsv-qed6h7dbvt.gz",
+      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\obj\\Debug\\net8.0\\compressed\\a1qqofvzsv-79yki9x3eb.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -11561,7 +11561,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "25188"
+          "Value": "25973"
         },
         {
           "Name": "Content-Type",
@@ -11569,11 +11569,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"VFQDpcyY8BTKln1OKHuOqn4CJVFArcWylM8654JPRnY=\""
+          "Value": "\"pz75H4fgZVdc8be/gMzJ6DiYIDeVrr2TzrqyxGg5E7w=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 08:36:59 GMT"
+          "Value": "Wed, 16 Apr 2025 17:00:31 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -11591,7 +11591,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-VFQDpcyY8BTKln1OKHuOqn4CJVFArcWylM8654JPRnY="
+          "Value": "sha256-pz75H4fgZVdc8be/gMzJ6DiYIDeVrr2TzrqyxGg5E7w="
         }
       ]
     },
@@ -38859,51 +38859,6 @@
       ]
     },
     {
-      "Route": "css/app.8nyfm55djp.css",
-      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\wwwroot\\css\\app.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "7755"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"JPdvdLLlFQ9OTnFFoh+0PQ7wlfW7ylouWhjNAmYaDA0=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 06:54:02 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8nyfm55djp"
-        },
-        {
-          "Name": "label",
-          "Value": "css/app.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-JPdvdLLlFQ9OTnFFoh+0PQ7wlfW7ylouWhjNAmYaDA0="
-        }
-      ]
-    },
-    {
       "Route": "css/app.css",
       "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\wwwroot\\css\\app.css",
       "Selectors": [],
@@ -38914,7 +38869,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "7755"
+          "Value": "8958"
         },
         {
           "Name": "Content-Type",
@@ -38922,11 +38877,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"JPdvdLLlFQ9OTnFFoh+0PQ7wlfW7ylouWhjNAmYaDA0=\""
+          "Value": "\"8QdOQRhR6FFhuMlyhvZUut1y3rVjsV4KKZlPoNgM/SQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 06:54:02 GMT"
+          "Value": "Fri, 04 Apr 2025 09:43:02 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -38936,7 +38891,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-JPdvdLLlFQ9OTnFFoh+0PQ7wlfW7ylouWhjNAmYaDA0="
+          "Value": "sha256-8QdOQRhR6FFhuMlyhvZUut1y3rVjsV4KKZlPoNgM/SQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.xoztivk9s2.css",
+      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\wwwroot\\css\\app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8958"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8QdOQRhR6FFhuMlyhvZUut1y3rVjsV4KKZlPoNgM/SQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 04 Apr 2025 09:43:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xoztivk9s2"
+        },
+        {
+          "Name": "label",
+          "Value": "css/app.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-8QdOQRhR6FFhuMlyhvZUut1y3rVjsV4KKZlPoNgM/SQ="
         }
       ]
     },
@@ -39351,51 +39351,6 @@
       ]
     },
     {
-      "Route": "index.8g30u9bq9n.html",
-      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\wwwroot\\index.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1536"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"iBxC6D+IauubwJNLmPjs7V0jeD5W4DfZ6M3LbwPVrMI=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 06:56:54 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "8g30u9bq9n"
-        },
-        {
-          "Name": "label",
-          "Value": "index.html"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-iBxC6D+IauubwJNLmPjs7V0jeD5W4DfZ6M3LbwPVrMI="
-        }
-      ]
-    },
-    {
       "Route": "index.html",
       "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\wwwroot\\index.html",
       "Selectors": [],
@@ -39406,7 +39361,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1536"
+          "Value": "1544"
         },
         {
           "Name": "Content-Type",
@@ -39414,11 +39369,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"iBxC6D+IauubwJNLmPjs7V0jeD5W4DfZ6M3LbwPVrMI=\""
+          "Value": "\"HMU5qZ6wgfN4/o8wC3SRpqcCLSsOy5QFAjDpkSQ/ID0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 06:56:54 GMT"
+          "Value": "Mon, 07 Apr 2025 10:24:54 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -39428,7 +39383,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-iBxC6D+IauubwJNLmPjs7V0jeD5W4DfZ6M3LbwPVrMI="
+          "Value": "sha256-HMU5qZ6wgfN4/o8wC3SRpqcCLSsOy5QFAjDpkSQ/ID0="
+        }
+      ]
+    },
+    {
+      "Route": "index.w3xeq7xlax.html",
+      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1544"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HMU5qZ6wgfN4/o8wC3SRpqcCLSsOy5QFAjDpkSQ/ID0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 07 Apr 2025 10:24:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "w3xeq7xlax"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HMU5qZ6wgfN4/o8wC3SRpqcCLSsOy5QFAjDpkSQ/ID0="
         }
       ]
     },
@@ -39515,6 +39515,51 @@
       ]
     },
     {
+      "Route": "js/theme.ij6el2v8dl.js",
+      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\wwwroot\\js\\theme.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1520"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YnpQ6lXKwlGKzVj5BfYJ3rebKs6ZXRx7sdh9wVRlktA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 07 Apr 2025 10:03:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ij6el2v8dl"
+        },
+        {
+          "Name": "label",
+          "Value": "js/theme.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YnpQ6lXKwlGKzVj5BfYJ3rebKs6ZXRx7sdh9wVRlktA="
+        }
+      ]
+    },
+    {
       "Route": "js/theme.js",
       "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\wwwroot\\js\\theme.js",
       "Selectors": [],
@@ -39525,7 +39570,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1521"
+          "Value": "1520"
         },
         {
           "Name": "Content-Type",
@@ -39533,11 +39578,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"z7fyHze06/5TUz3oDzrZnGpJWQjZoIJbWBVkeIf3RD4=\""
+          "Value": "\"YnpQ6lXKwlGKzVj5BfYJ3rebKs6ZXRx7sdh9wVRlktA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 06:56:45 GMT"
+          "Value": "Mon, 07 Apr 2025 10:03:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -39547,52 +39592,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-z7fyHze06/5TUz3oDzrZnGpJWQjZoIJbWBVkeIf3RD4="
-        }
-      ]
-    },
-    {
-      "Route": "js/theme.rpnrzps5ng.js",
-      "AssetFile": "C:\\Users\\sanga\\OneDrive\\Documents\\SSBOT-1\\SSBOT\\HealthcareChatbot\\wwwroot\\js\\theme.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1521"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"z7fyHze06/5TUz3oDzrZnGpJWQjZoIJbWBVkeIf3RD4=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 04 Apr 2025 06:56:45 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "rpnrzps5ng"
-        },
-        {
-          "Name": "label",
-          "Value": "js/theme.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-z7fyHze06/5TUz3oDzrZnGpJWQjZoIJbWBVkeIf3RD4="
+          "Value": "sha256-YnpQ6lXKwlGKzVj5BfYJ3rebKs6ZXRx7sdh9wVRlktA="
         }
       ]
     },

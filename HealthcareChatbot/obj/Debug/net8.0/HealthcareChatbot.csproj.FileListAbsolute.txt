@@ -1058,6 +1058,7 @@ C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net8
 C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net8.0\refint\HealthcareChatbot.dll
 C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net8.0\HealthcareChatbot.pdb
 C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net8.0\ref\HealthcareChatbot.dll
-C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net8.0\compressed\a1qqofvzsv-qed6h7dbvt.gz
-C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net8.0\compressed\u66zzr5uve-fsnhv725b6.gz
-C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net8.0\compressed\4zt7mzi7wl-m3n7qnc1iq.gz
+C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net8.0\HealthcareChatbot.sourcelink.json
+C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net8.0\compressed\a1qqofvzsv-79yki9x3eb.gz
+C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net8.0\compressed\u66zzr5uve-xin2dcepla.gz
+C:\Users\sanga\OneDrive\Documents\SSBOT-1\SSBOT\HealthcareChatbot\obj\Debug\net8.0\compressed\4zt7mzi7wl-fkvcazwnrt.gz

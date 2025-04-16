@@ -1,147 +1,165 @@
 ﻿@page "/"
 @using MudBlazor
-@using Microsoft.JSInterop
-@using System.Net.Http.Json
-@using Markdig
-@using HealthcareChatbot.Services
-@inject ApiService ApiService
-@inject IJSRuntime JSRuntime
+@inject ISnackbar Snackbar
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
 
-<div style="
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;">
+<MudContainer MaxWidth="MaxWidth.Large" Class="mt-16">
+    <MudText Typo="Typo.h3" Class="mb-8" Align="Align.Center">Healthcare Assistant</MudText>
+    
+    <MudGrid>
+        <MudItem xs="12" sm="6">
+            <MudCard Class="mb-6">
+                <MudCardHeader>
+                    <MudText Typo="Typo.h5">Quick Health Information</MudText>
+                </MudCardHeader>
+                <MudCardContent>
+                    <MudList>
+                        @foreach (var query in SampleQueries)
+                        {
+                            <MudListItem Icon="@Icons.Material.Filled.Healing" OnClick="@(() => SelectQuery(query))">
+                                @query
+                            </MudListItem>
+                        }
+                    </MudList>
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
 
-    <!-- Drawer for Chat History -->
-    <MudDrawer Open="true" Anchor="Anchor.Left" Elevation="4" Width="300px" Class="p-4">
-        <MudButton Variant="Variant.Filled" OnClick="NewChat" Class="mb-4">
-            New Chat
-        </MudButton>
-        <MudDivider />
-    </MudDrawer>
-
-    <!-- Main Chat Interface -->
-    <MudContainer MaxWidth="MaxWidth.Medium" Class="d-flex flex-column align-items-center" Style="width: 100%;">
-        <MudPaper Elevation="4" Class="p-6 rounded-lg" Style="width: 100%; text-align: center;">
-            <!-- Header -->
-            <MudText Typo="Typo.h3" Class="mb-4" Color="Color.Primary" Align="Align.Center" Style="font-weight: bold;">
-                Healthcare Chatbot
-            </MudText>
-            <MudText Typo="Typo.body1" Class="mb-4" Color="Color.Secondary">
-                Your assistant for health-related queries.
-            </MudText>
-
-            <!-- Chat Box -->
-            <MudPaper Elevation="1" Class="p-4 mb-4" Style="height: 300px; overflow-y: auto; border: 1px solid #e0e0e0; border-radius: 8px;" id="chat-box">
-                @foreach (var message in Messages)
-                {
-                    @if (message.StartsWith("Bot:"))
+        <MudItem xs="12" sm="6">
+            <MudCard>
+                <MudCardHeader>
+                    <MudText Typo="Typo.h5">Health Chat</MudText>
+                </MudCardHeader>
+                <MudCardContent Style="max-height: 400px; overflow-y: auto;">
+                    @foreach (var message in ChatMessages)
                     {
-                        <MudText Typo="Typo.body2" Style="background-color: #D1C4E9; padding: 10px; border-radius: 8px;">
-                            @((MarkupString)RenderMarkdown(message.Replace("Bot: ", "")))
-                        </MudText>
+                        <MudPaper Class="@(message.IsUser ? "d-flex flex-row-reverse mb-2" : "d-flex flex-row mb-2")" Elevation="0">
+                            <MudPaper Class="@(message.IsUser ? "ml-auto pa-3 rounded-lg" : "mr-auto pa-3 rounded-lg")"
+                                     Style="@(message.IsUser ? "background-color: var(--mud-palette-primary-lighten); max-width: 80%;" : "background-color: var(--mud-palette-surface); max-width: 80%;")"
+                                     Elevation="0">
+                                <MudText>@message.Content</MudText>
+                            </MudPaper>
+                        </MudPaper>
                     }
-                    else
+                    @if (IsLoading)
                     {
-                        <MudText Typo="Typo.body2" Style="background-color: #BBDEFB; padding: 10px; border-radius: 8px; text-align: right;">
-                            @message
-                        </MudText>
+                        <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
                     }
-                }
-                @if (IsLoading)
-                {
-                    <MudText Typo="Typo.body2" Style="background-color: #E0E0E0; padding: 10px; border-radius: 8px;">
-                        Bot is typing...
-                    </MudText>
-                }
-            </MudPaper>
-
-            <!-- Input Section -->
-            <div class="d-flex align-items-center" style="justify-content: center; margin-top: 1rem;">
-                <MudPaper Elevation="2" Class="p-3" Style="border: 1px solid #e0e0e0; background-color: white; display: flex; align-items: center; border-radius: 8px; width: 100%;">
-                    <textarea @bind="UserInput" placeholder="Type your message here..." style="resize: vertical; border: 1px solid #e0e0e0; padding: 10px; border-radius: 8px; width: 100%;"></textarea>
-                    <MudButton Variant="Variant.Text" OnClick="SendMessage" Disabled="@IsLoading">
+                </MudCardContent>
+                <MudCardActions>
+                    <MudTextField @bind-Value="CurrentMessage" 
+                                Label="Ask a health-related question"
+                                Variant="Variant.Outlined"
+                                Class="mr-2 flex-grow-1"
+                                DisableUnderLine="true"
+                                Immediate="true"
+                                OnKeyDown="@OnKeyDown" />
+                    <MudButton Color="Color.Primary" 
+                              Variant="Variant.Filled" 
+                              OnClick="SendMessage"
+                              Disabled="@(IsLoading || string.IsNullOrWhiteSpace(CurrentMessage))">
                         Send
                     </MudButton>
-                </MudPaper>
-            </div>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
 
-            <!-- Suggested Queries -->
-            <div class="d-flex flex-wrap mt-4" style="gap: 0.5rem; justify-content: center;">
-                @foreach (var suggestion in SuggestedQueries)
-                {
-                    <MudButton Variant="Variant.Outlined" Color="Color.Secondary" OnClick="@(() => SetQuery(suggestion))" Disabled="@IsLoading">
-                        @suggestion
-                    </MudButton>
-                }
-            </div>
-        </MudPaper>
-    </MudContainer>
-</div>
+    <MudPaper Class="mt-8 pa-4" Elevation="0">
+        <MudText Typo="Typo.body2" Class="mud-text-secondary">
+            Disclaimer: This healthcare assistant provides general information and should not be considered as medical advice. 
+            Always consult with a qualified healthcare professional for specific medical concerns.
+        </MudText>
+    </MudPaper>
+</MudContainer>
 
 @code {
-    private string UserInput = "";
+    private List<string> SampleQueries = new();
+    private List<ChatMessage> ChatMessages = new();
+    private string CurrentMessage = "";
     private bool IsLoading = false;
-    private List<string> Messages = new();
-    private List<string> SuggestedQueries = new() { "Loading suggestions..." };
 
     protected override async Task OnInitializedAsync()
     {
-        await FetchSampleQueries();
-    }
-
-    private async Task FetchSampleQueries()
-    {
         try
         {
-            SuggestedQueries = await ApiService.GetSampleQueriesAsync();
+            SampleQueries = await Http.GetFromJsonAsync<List<string>>("http://localhost:8000/generate-sample-queries") 
+                           ?? new List<string>();
         }
-        catch
+        catch (Exception ex)
         {
-            SuggestedQueries = new() { "What are the symptoms of flu?", "How to manage diabetes?", "Tips for better sleep" };
+            Snackbar.Add("Failed to load sample queries", Severity.Error);
+            Console.WriteLine($"Error loading sample queries: {ex.Message}");
         }
     }
 
     private async Task SendMessage()
     {
-        if (!string.IsNullOrWhiteSpace(UserInput))
+        if (string.IsNullOrWhiteSpace(CurrentMessage)) return;
+
+        var userMessage = CurrentMessage;
+        ChatMessages.Add(new ChatMessage { Content = userMessage, IsUser = true });
+        CurrentMessage = "";
+        IsLoading = true;
+        StateHasChanged();
+
+        try
         {
-            Messages.Add($"You: {UserInput}");
-            try
+            var response = await Http.PostAsJsonAsync("http://localhost:8000/generate-response", 
+                new { message = userMessage });
+            
+            if (response.IsSuccessStatusCode)
             {
-                IsLoading = true;
-                var response = await ApiService.GenerateResponseAsync(UserInput);
-                Messages.Add($"Bot: {response}");
+                var result = await response.Content.ReadFromJsonAsync<OutputModel>();
+                ChatMessages.Add(new ChatMessage { Content = result?.Output ?? "No response received", IsUser = false });
             }
-            catch
+            else
             {
-                Messages.Add("Bot: Could not connect to the server.");
+                ChatMessages.Add(new ChatMessage { 
+                    Content = "I apologize, but I couldn't process your request at this time. Please try again.", 
+                    IsUser = false 
+                });
+                Snackbar.Add("Failed to get response from the server", Severity.Error);
             }
-            finally
-            {
-                IsLoading = false;
-                UserInput = "";
-                await JSRuntime.InvokeVoidAsync("scrollToBottom", "chat-box");
-            }
+        }
+        catch (Exception ex)
+        {
+            ChatMessages.Add(new ChatMessage { 
+                Content = "I apologize, but there was an error processing your request. Please try again.", 
+                IsUser = false 
+            });
+            Snackbar.Add($"Error: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            IsLoading = false;
+            StateHasChanged();
         }
     }
 
-    private void NewChat()
+    private void SelectQuery(string query)
     {
-        Messages.Clear();
-        SuggestedQueries = new() { "What are the symptoms of flu?", "How to manage diabetes?", "Tips for better sleep" };
+        CurrentMessage = query;
+        StateHasChanged();
     }
 
-    private string RenderMarkdown(string markdown)
+    private async Task OnKeyDown(KeyboardEventArgs e)
     {
-        return Markdown.ToHtml(markdown);
+        if (e.Key == "Enter" && !string.IsNullOrWhiteSpace(CurrentMessage) && !IsLoading)
+        {
+            await SendMessage();
+        }
     }
 
-    private async Task SetQuery(string query)
+    private class ChatMessage
     {
-        UserInput = query;
-        await SendMessage();
+        public string Content { get; set; } = "";
+        public bool IsUser { get; set; }
+    }
+
+    private class OutputModel
+    {
+        public string Output { get; set; } = "";
     }
 }

@@ -32,11 +32,11 @@
     <script src="js/theme.js"></script>
     <script>
         window.scrollToBottom = function (elementId) {
-            var element = document.getElementById(elementId);
+            const element = document.querySelector('.' + elementId);
             if (element) {
                 element.scrollTop = element.scrollHeight;
             }
-        }
+        };
     </script>
 </body>
 

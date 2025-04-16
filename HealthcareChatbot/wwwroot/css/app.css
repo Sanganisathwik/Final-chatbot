@@ -278,3 +278,64 @@ a, .btn-link {
     background-color: var(--mud-palette-primary);
     color: var(--mud-palette-primary-contrast);
 }
+
+/* Chat message styles */
+.message {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.user-message {
+    background-color: var(--mud-palette-primary);
+    color: var(--mud-palette-primary-contrast);
+    margin-left: auto;
+    border-bottom-right-radius: 0;
+}
+
+.bot-message {
+    background-color: var(--mud-palette-background-grey);
+    color: var(--mud-palette-text-primary);
+    margin-right: auto;
+    border-bottom-left-radius: 0;
+}
+
+/* Dark theme styles */
+.dark-theme {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-theme .mud-paper {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+.dark-theme .bot-message {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+.dark-theme .user-message {
+    background-color: var(--mud-palette-primary);
+    color: var(--mud-palette-primary-contrast);
+}
+
+/* Loading animation */
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+.loading-progress circle:last-child {
+    animation: pulse 1.5s ease-in-out infinite;
+}

@@ -91,10 +91,21 @@ public class ApiService
     {
         try
         {
-            var response = await _httpClient.PostAsJsonAsync($"{BaseUrl}/generate-response", new { query });
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<GenerateResponse>();
-            return result?.response ?? "Sorry, I couldn't process your request at this time.";
+            // Create a proper request object that matches what the backend expects
+            var request = new { message = query };
+            var response = await _httpClient.PostAsJsonAsync($"{BaseUrl}/generate-response", request);
+            
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<GenerateResponse>();
+                return result?.response ?? "Sorry, I couldn't process your request at this time.";
+            }
+            else
+            {
+                // Log the error status code
+                Console.WriteLine($"Error generating response: {response.StatusCode}");
+                return "Sorry, I couldn't process your request at this time.";
+            }
         }
         catch (Exception ex)
         {

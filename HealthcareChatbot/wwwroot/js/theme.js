@@ -38,4 +38,4 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
 });
 
 // Call initialize on page load
-document.addEventListener('DOMContentLoaded', initializeTheme); 
+document.addEventListener('DOMContentLoaded', initializeTheme);

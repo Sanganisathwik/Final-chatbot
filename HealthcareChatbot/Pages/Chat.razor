@@ -1,149 +1,142 @@
 @page "/chat"
 @using HealthcareChatbot.Services
 @inject ApiService ApiService
-@inject IJSRuntime JSRuntime
 @inject ISnackbar Snackbar
-@using MudBlazor
+@inject IJSRuntime JSRuntime
+
+<PageTitle>Chat - Healthcare Chatbot</PageTitle>
 
 <MudContainer MaxWidth="MaxWidth.Medium" Class="mt-4">
-    <MudPaper Elevation="3" Class="pa-4">
-        <MudText Typo="Typo.h5" Class="mb-4">Healthcare Chatbot</MudText>
-        
-        <MudPaper Elevation="0" Class="pa-4 mb-4 chat-container" Style="height: 400px; overflow-y: auto;" @ref="chatContainer">
-            @foreach (var message in chatMessages)
+    <MudPaper Class="pa-4" Elevation="3">
+        <MudText Typo="Typo.h4" Class="mb-4">Chat with Healthcare Assistant</MudText>
+        <MudText Class="mb-4">Ask me anything about health, symptoms, or medical advice.</MudText>
+
+        <div class="chat-container" style="height: 400px; overflow-y: auto; margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--mud-palette-lines-default); border-radius: 4px;" id="chat-box">
+            @if (messages.Count == 0)
             {
-                <div class="d-flex @(message.IsUser ? "justify-end" : "justify-start") mb-3">
-                    <MudPaper Elevation="1" Class="pa-3 message-bubble" Style="@GetMessageStyle(message.IsUser)">
+                <MudText Align="Align.Center" Class="my-4">Start a conversation by typing a message below.</MudText>
+            }
+            else
+            {
+                @foreach (var message in messages)
+                {
+                    <div class="message @(message.IsUser ? "user-message" : "bot-message")">
                         <MudText>@message.Content</MudText>
-                    </MudPaper>
-                </div>
+                    </div>
+                }
             }
             @if (isLoading)
             {
-                <div class="d-flex justify-start mb-3">
-                    <MudPaper Elevation="1" Class="pa-3 message-bubble" Style="background-color: var(--mud-palette-background-grey);">
-                        <MudProgressCircular Size="Size.Small" Indeterminate="true" />
-                    </MudPaper>
+                <div class="message bot-message">
+                    <MudProgressCircular Size="Size.Small" Indeterminate="true" />
                 </div>
             }
-        </MudPaper>
+        </div>
 
-        <MudTextField @bind-Value="userMessage" 
-                     Placeholder="Type your health-related question..."
-                     Variant="Variant.Outlined"
-                     Class="mb-2"
+        <MudTextField @bind-Value="UserInput" 
+                     Placeholder="Type your message here..." 
+                     Adornment="Adornment.End"
+                     AdornmentIcon="@Icons.Material.Filled.Send"
+                     OnAdornmentClick="SendMessage"
                      Immediate="true"
-                     @onkeypress="HandleKeyPress"
-                     Disabled="@isLoading" />
-        
-        <div class="d-flex justify-space-between">
-            <MudButton Variant="Variant.Filled" 
-                      Color="Color.Primary" 
-                      OnClick="SendMessage"
-                      Disabled="@isLoading"
-                      StartIcon="@Icons.Material.Filled.Send">
-                Send
-            </MudButton>
+                     Class="mt-2" />
+
+        @if (suggestedQueries.Count > 0)
+        {
+            <MudText Class="mt-4">Suggested queries:</MudText>
+            <div class="d-flex flex-wrap gap-2 mt-2">
+                @foreach (var query in suggestedQueries)
+                {
+                    <MudChip Color="Color.Primary" 
+                             Variant="Variant.Outlined" 
+                             OnClick="@(() => SelectQuery(query))">
+                        @query
+                    </MudChip>
+                }
+            </div>
+        }
+
+        <div class="d-flex justify-space-between mt-4">
             <MudButton Variant="Variant.Outlined" 
                       Color="Color.Secondary" 
-                      OnClick="ClearChat"
-                      StartIcon="@Icons.Material.Filled.Delete">
-                Clear Chat
+                      OnClick="NewChat">
+                New Chat
             </MudButton>
         </div>
     </MudPaper>
 </MudContainer>
 
-<style>
-    .chat-container {
-        scroll-behavior: smooth;
-    }
-
-    .message-bubble {
-        max-width: 80%;
-        word-wrap: break-word;
-        border-radius: 1rem;
-        transition: transform 0.2s ease-in-out;
-    }
-
-    .message-bubble:hover {
-        transform: scale(1.01);
-    }
-</style>
-
 @code {
-    private string userMessage = string.Empty;
+    private string UserInput { get; set; } = string.Empty;
+    private List<ChatMessage> messages = new();
+    private List<string> suggestedQueries = new();
     private bool isLoading = false;
-    private List<ChatMessage> chatMessages = new();
-    private MudPaper? chatContainer;
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    protected override async Task OnInitializedAsync()
     {
-        if (firstRender)
-        {
-            await ScrollToBottom();
-        }
+        await FetchSampleQueries();
     }
 
-    private string GetMessageStyle(bool isUser) => 
-        $"max-width: 80%; {(isUser ? "background-color: var(--mud-palette-primary); color: var(--mud-palette-primary-contrast);" : "background-color: var(--mud-palette-background-grey);")}";
-
-    private async Task SendMessage()
+    private async Task FetchSampleQueries()
     {
-        if (string.IsNullOrWhiteSpace(userMessage)) return;
-
-        var message = userMessage;
-        userMessage = string.Empty;
-        chatMessages.Add(new ChatMessage { Content = message, IsUser = true });
-        await ScrollToBottom();
-
-        isLoading = true;
         try
         {
-            var response = await ApiService.GenerateResponseAsync(message);
-            chatMessages.Add(new ChatMessage { Content = response, IsUser = false });
-            await ScrollToBottom();
+            suggestedQueries = await ApiService.GetSampleQueriesAsync();
         }
         catch (Exception ex)
         {
-            Snackbar.Add("Error: Failed to get response from the server", Severity.Error);
-            chatMessages.Add(new ChatMessage { Content = "Sorry, I encountered an error. Please try again.", IsUser = false });
-            await ScrollToBottom();
+            Console.WriteLine($"Error getting sample queries: {ex.Message}");
+            suggestedQueries = new List<string>
+            {
+                "What are the symptoms of the flu?",
+                "How can I manage diabetes?",
+                "What are some tips for better sleep?"
+            };
+        }
+    }
+
+    private async Task SendMessage()
+    {
+        if (string.IsNullOrWhiteSpace(UserInput))
+            return;
+
+        var userMessage = UserInput;
+        messages.Add(new ChatMessage { Content = userMessage, IsUser = true });
+        UserInput = string.Empty;
+        StateHasChanged();
+        await JSRuntime.InvokeVoidAsync("scrollToBottom", "chat-box");
+
+        try
+        {
+            isLoading = true;
+            StateHasChanged();
+
+            var response = await ApiService.GenerateResponseAsync(userMessage);
+            messages.Add(new ChatMessage { Content = response, IsUser = false });
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add("Error sending message: " + ex.Message, Severity.Error);
         }
         finally
         {
             isLoading = false;
+            StateHasChanged();
+            await JSRuntime.InvokeVoidAsync("scrollToBottom", "chat-box");
         }
     }
 
-    private async Task ScrollToBottom()
+    private void SelectQuery(string query)
     {
-        try
-        {
-            await Task.Delay(100); // Wait for DOM update
-            if (chatContainer != null)
-            {
-                await JSRuntime.InvokeVoidAsync("scrollToBottom", "chatContainer");
-            }
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error scrolling to bottom: {ex.Message}");
-        }
+        UserInput = query;
+        StateHasChanged();
     }
 
-    private async Task HandleKeyPress(KeyboardEventArgs e)
+    private void NewChat()
     {
-        if (e.Key == "Enter" && !e.ShiftKey)
-        {
-            await SendMessage();
-        }
-    }
-
-    private void ClearChat()
-    {
-        chatMessages.Clear();
-        Snackbar.Add("Chat history cleared", Severity.Info);
+        messages.Clear();
+        UserInput = string.Empty;
+        StateHasChanged();
     }
 
     private class ChatMessage
