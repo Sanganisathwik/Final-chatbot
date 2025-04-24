@@ -1,13 +1,14 @@
 /* General Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right, #f4f7fc, #e6efff);
+    background: #f5f5f5;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    color: #333;
 }
 
 /* Centering the Chatbot */
@@ -42,6 +43,7 @@ body {
     max-height: 400px;
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
 }
 
 /* Smooth Message Fade-in */
@@ -53,7 +55,7 @@ body {
 /* User Message */
 .user-message {
     align-self: flex-end;
-    background: linear-gradient(135deg, #76D275, #5DBB63);
+    background: #4A90E2;
     color: white;
     padding: 12px;
     border-radius: 16px;
@@ -66,7 +68,7 @@ body {
 /* Bot Message */
 .bot-message {
     align-self: flex-start;
-    background: linear-gradient(135deg, #E3E3E3, #D1D1D1);
+    background: #f0f0f0;
     color: #333;
     padding: 12px;
     border-radius: 16px;
@@ -258,12 +260,12 @@ a, .btn-link {
 
 /* Dark theme specific styles */
 .dark-theme {
-    background-color: var(--mud-palette-background-grey);
-    color: var(--mud-palette-text-primary);
+    background: #1a1a1a;
+    color: #ffffff;
 }
 
 .dark-theme .mud-paper {
-    background-color: var(--mud-palette-background);
+    background-color: #2d2d2d !important;
 }
 
 .dark-theme .mud-nav-menu {
@@ -303,24 +305,23 @@ a, .btn-link {
 }
 
 /* Dark theme styles */
-.dark-theme {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-.dark-theme .mud-paper {
-    background-color: #1e1e1e;
-    color: #ffffff;
-}
-
 .dark-theme .bot-message {
-    background-color: #2d2d2d;
+    background: #3d3d3d;
     color: #ffffff;
 }
 
 .dark-theme .user-message {
-    background-color: var(--mud-palette-primary);
-    color: var(--mud-palette-primary-contrast);
+    background: #4A90E2;
+    color: #ffffff;
+}
+
+.dark-theme .chat-container {
+    background-color: #2d2d2d;
+}
+
+.dark-theme .chat-box {
+    background-color: #2d2d2d;
+    color: #ffffff;
 }
 
 /* Loading animation */

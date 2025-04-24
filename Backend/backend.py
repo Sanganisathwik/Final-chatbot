@@ -1,22 +1,20 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
 import os
 import google.generativeai as genai
 
-# Load environment variables and configure Gemini
+# Load environment variables
 load_dotenv()
-api_key = "AIzaSyBsOChWdEgk7ResbVkk9WcLor2w127NO4U"
-genai.configure(api_key=api_key)
 
-# Initialize the Gemini API with specific configuration
-try:
-    model = genai.GenerativeModel('gemini-2.0-flash')
-    response = model.generate_content("Test healthcare response")
-    print("Successfully connected to Gemini API and tested model access")
-except Exception as e:
-    print(f"Error testing Gemini API access: {str(e)}")
+# Get API key from environment variable
+api_key = "AIzaSyBsOChWdEgk7ResbVkk9WcLor2w127NO4U"  # Using the provided API key directly
+if not api_key:
+    raise ValueError("GEMINI_API_KEY environment variable is not set")
+
+# Configure Gemini
+genai.configure(api_key=api_key)
 
 # Initialize FastAPI app
 app = FastAPI()
@@ -51,18 +49,31 @@ disease_data = {
     "covid-19": {"symptoms": ["fever", "dry cough", "loss of taste/smell"], "medication": "Supportive care, Paracetamol, Hydration"}
 }
 
+def get_gemini_model():
+    try:
+        return genai.GenerativeModel('gemini-2.0-flash')  # Updated to use the new model
+    except Exception as e:
+        print(f"Error initializing Gemini model: {str(e)}")
+        return None
+
 @app.post("/detect-disease", response_model=OutputModel)
 async def detect_disease(symptoms_data: SymptomsModel):
-    user_symptoms = set(symptom.lower() for symptom in symptoms_data.symptoms)
-    for disease, data in disease_data.items():
-        if any(symptom in user_symptoms for symptom in data["symptoms"]):
-            return OutputModel(output=f"Possible condition: {disease}. Recommended medication: {data['medication']}")
-    return OutputModel(output="No matching disease found. Consult a doctor.")
+    try:
+        user_symptoms = set(symptom.lower() for symptom in symptoms_data.symptoms)
+        for disease, data in disease_data.items():
+            if any(symptom in user_symptoms for symptom in data["symptoms"]):
+                return OutputModel(output=f"Possible condition: {disease}. Recommended medication: {data['medication']}")
+        return OutputModel(output="No matching disease found. Consult a doctor.")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/health-tips", response_model=OutputModel)
 async def health_tips(query_data: HealthQueryModel):
     try:
-        model = genai.GenerativeModel("gemini-pro")
+        model = get_gemini_model()
+        if not model:
+            return OutputModel(output="Service temporarily unavailable. Please try again later.")
+            
         response = model.generate_content(f"Provide health tips for: {query_data.query}")
         if not response or not response.text:
             return OutputModel(output="I apologize, but I couldn't generate health tips. Please try again.")
@@ -75,7 +86,9 @@ async def health_tips(query_data: HealthQueryModel):
 async def generate_response(request_data: GenerateResponseModel):
     try:
         print(f"Received message: {request_data.message}")
-        model = genai.GenerativeModel('gemini-2.0-flash')
+        model = get_gemini_model()
+        if not model:
+            return OutputModel(output="Service temporarily unavailable. Please try again later.")
         
         prompt = """You are a professional healthcare assistant chatbot. Provide accurate, helpful medical information while:
         1. Using clear, simple language that patients can understand
@@ -113,7 +126,7 @@ async def generate_response(request_data: GenerateResponseModel):
         print(f"Error in generate_response: {str(e)}")
         return OutputModel(output="I apologize, but there was an unexpected error. Please try again later.")
 
-@app.post("/generate-sample-queries")
+@app.get("/generate-sample-queries")
 async def generate_sample_queries():
     return [
         "What are common symptoms of diabetes?",

@@ -1,0 +1,168 @@
+@page "/symptoms"
+@using MudBlazor
+@inject ISnackbar Snackbar
+@inject HttpClient Http
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-16">
+    <MudPaper Class="pa-4" Elevation="3">
+        <MudText Typo="Typo.h4" Class="mb-4" Align="Align.Center">Health Assistant</MudText>
+        
+        <MudText Class="mb-4" Align="Align.Center">Ask me anything about your symptoms or health concerns</MudText>
+
+        <div class="chat-container" style="height: 400px; overflow-y: auto; margin-bottom: 1rem; padding: 1rem; border: 1px solid var(--mud-palette-lines-default); border-radius: 4px;">
+            @if (Messages.Count == 0)
+            {
+                <MudText Align="Align.Center" Class="my-4">Start a conversation by typing a message below.</MudText>
+            }
+            else
+            {
+                @foreach (var message in Messages)
+                {
+                    <div class="message @(message.IsUser ? "user-message" : "bot-message")">
+                        <MudText>@message.Content</MudText>
+                    </div>
+                }
+            }
+            @if (IsLoading)
+            {
+                <div class="message bot-message">
+                    <MudProgressCircular Size="Size.Small" Indeterminate="true" />
+                </div>
+            }
+        </div>
+
+        <MudTextField @bind-Value="CurrentMessage" 
+                     Label="Type your health question"
+                     Variant="Variant.Outlined"
+                     Class="mb-4"
+                     Immediate="true"
+                     OnKeyDown="@OnKeyDown" />
+
+        <MudButton Color="Color.Primary" 
+                  Variant="Variant.Filled" 
+                  OnClick="SendMessage"
+                  FullWidth="true"
+                  Disabled="@(string.IsNullOrWhiteSpace(CurrentMessage) || IsLoading)">
+            Send Message
+        </MudButton>
+
+        @if (SuggestedQueries.Count > 0)
+        {
+            <MudText Class="mt-4">Suggested questions:</MudText>
+            <div class="d-flex flex-wrap gap-2 mt-2">
+                @foreach (var query in SuggestedQueries)
+                {
+                    <MudChip Color="Color.Primary" 
+                             Variant="Variant.Outlined" 
+                             OnClick="@(() => SelectQuery(query))">
+                        @query
+                    </MudChip>
+                }
+            </div>
+        }
+
+        <MudText Typo="Typo.body2" Class="mt-4" Align="Align.Center">
+            Note: This is a general health assistant. For specific medical advice, please consult a healthcare professional.
+        </MudText>
+    </MudPaper>
+</MudContainer>
+
+@code {
+    private string CurrentMessage { get; set; } = "";
+    private List<ChatMessage> Messages = new();
+    private List<string> SuggestedQueries = new();
+    private bool IsLoading { get; set; } = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await FetchSampleQueries();
+    }
+
+    private async Task FetchSampleQueries()
+    {
+        try
+        {
+            SuggestedQueries = await Http.GetFromJsonAsync<List<string>>("http://localhost:8000/generate-sample-queries") 
+                              ?? new List<string>();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error getting sample queries: {ex.Message}");
+            SuggestedQueries = new List<string>
+            {
+                "What are the symptoms of the flu?",
+                "How can I manage diabetes?",
+                "What are some tips for better sleep?"
+            };
+        }
+    }
+
+    private async Task SendMessage()
+    {
+        if (string.IsNullOrWhiteSpace(CurrentMessage)) return;
+
+        var userMessage = CurrentMessage;
+        Messages.Add(new ChatMessage { Content = userMessage, IsUser = true });
+        CurrentMessage = "";
+        IsLoading = true;
+        StateHasChanged();
+
+        try
+        {
+            var response = await Http.PostAsJsonAsync("http://localhost:8000/generate-response", 
+                new { message = userMessage });
+            
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<OutputModel>();
+                Messages.Add(new ChatMessage { Content = result?.Output ?? "No response received", IsUser = false });
+            }
+            else
+            {
+                Messages.Add(new ChatMessage { 
+                    Content = "I apologize, but I couldn't process your request at this time. Please try again.", 
+                    IsUser = false 
+                });
+                Snackbar.Add("Failed to get response from the server", Severity.Error);
+            }
+        }
+        catch (Exception ex)
+        {
+            Messages.Add(new ChatMessage { 
+                Content = "I apologize, but there was an error processing your request. Please try again.", 
+                IsUser = false 
+            });
+            Snackbar.Add($"Error: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            IsLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private void SelectQuery(string query)
+    {
+        CurrentMessage = query;
+        StateHasChanged();
+    }
+
+    private async Task OnKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter" && !string.IsNullOrWhiteSpace(CurrentMessage) && !IsLoading)
+        {
+            await SendMessage();
+        }
+    }
+
+    private class ChatMessage
+    {
+        public string Content { get; set; } = "";
+        public bool IsUser { get; set; }
+    }
+
+    private class OutputModel
+    {
+        public string Output { get; set; } = "";
+    }
+} 

@@ -1,0 +1,88 @@
+@page "/medicine"
+@using MudBlazor
+@inject ISnackbar Snackbar
+@inject HttpClient Http
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-16">
+    <MudPaper Class="pa-4" Elevation="3">
+        <MudText Typo="Typo.h4" Class="mb-4" Align="Align.Center">Medicine Recommendation</MudText>
+        
+        <MudText Class="mb-4" Align="Align.Center">Enter your symptoms to get personalized medicine recommendations</MudText>
+
+        <MudTextField @bind-Value="Symptoms" 
+                     Label="Enter your symptoms (comma separated)"
+                     Variant="Variant.Outlined"
+                     Class="mb-4"
+                     Lines="3"
+                     Immediate="true" />
+
+        <MudButton Color="Color.Primary" 
+                  Variant="Variant.Filled" 
+                  OnClick="GetRecommendation"
+                  FullWidth="true"
+                  Disabled="@(string.IsNullOrWhiteSpace(Symptoms) || IsLoading)">
+            Get Recommendation
+        </MudButton>
+
+        @if (IsLoading)
+        {
+            <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="mt-4" />
+        }
+
+        @if (!string.IsNullOrEmpty(Recommendation))
+        {
+            <MudPaper Class="mt-4 pa-4" Elevation="0" Style="background-color: var(--mud-palette-surface);">
+                <MudText Typo="Typo.h6" Class="mb-2">Recommendation:</MudText>
+                <MudText>@Recommendation</MudText>
+            </MudPaper>
+        }
+
+        <MudText Typo="Typo.body2" Class="mt-4" Align="Align.Center">
+            Note: This is a general recommendation. Always consult with a healthcare professional before taking any medication.
+        </MudText>
+    </MudPaper>
+</MudContainer>
+
+@code {
+    private string Symptoms { get; set; } = "";
+    private string Recommendation { get; set; } = "";
+    private bool IsLoading { get; set; } = false;
+
+    private async Task GetRecommendation()
+    {
+        if (string.IsNullOrWhiteSpace(Symptoms)) return;
+
+        IsLoading = true;
+        StateHasChanged();
+
+        try
+        {
+            var response = await Http.PostAsJsonAsync("http://localhost:8000/detect-disease", 
+                new { symptoms = Symptoms.Split(',').Select(s => s.Trim()).ToList() });
+            
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<OutputModel>();
+                Recommendation = result?.Output ?? "No recommendation available";
+            }
+            else
+            {
+                Snackbar.Add("Failed to get recommendation", Severity.Error);
+            }
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add($"Error: {ex.Message}", Severity.Error);
+        }
+        finally
+        {
+            IsLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private class OutputModel
+    {
+        public string Output { get; set; } = "";
+    }
+} 

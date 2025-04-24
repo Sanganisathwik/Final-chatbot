@@ -3,7 +3,7 @@
 
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">Healthcare Chatbot</a>
+        <a class="navbar-brand" href="">Healthcare Assistant</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -13,8 +13,8 @@
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
     <MudNavMenu>
         <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-        <MudNavLink Href="chat" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Chat">Chat</MudNavLink>
-        <MudNavLink Href="symptom-checker" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.LocalHospital">Symptom Checker</MudNavLink>
+        <MudNavLink Href="medicine" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.LocalPharmacy">Medicine Recommendation</MudNavLink>
+        <MudNavLink Href="symptoms" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.LocalHospital">Health Assistant</MudNavLink>
     </MudNavMenu>
 </div>
 

@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "HealthcareChatbot",
   "resources": {
-    "hash": "sha256-qLk2GqFoq2xAvR6z4QzIwkpjAI8BtesSMj9Vg/YSKdQ=",
+    "hash": "sha256-CCdK89cavwuaIQ/+BaM8Rb5gvFe7jh8c7MGntxrj4rQ=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-xNQsYHtL1vcbrVTHDZAwJM4WovpoyjsrM2C6FQ8cW1w="
     },
@@ -214,10 +214,10 @@
       "mscorlib.wasm": "sha256-RAf5jgXLg+06C4tJ3CabxAZaVjCN2/+E6fxRjRN8yHk=",
       "netstandard.wasm": "sha256-KCAE8RQwTurP5pGnGF819qf9sK++2O0rXzt6tOjlfi8=",
       "System.Private.CoreLib.wasm": "sha256-LQqLbHgeEX4HONx7GwIxGgmzIXP6n2OPxqnq+/4Tyqk=",
-      "HealthcareChatbot.wasm": "sha256-lS/eLoCzDUuqn3bqldJg/k5KWDOLKkwFwelq5jCe/gA="
+      "HealthcareChatbot.wasm": "sha256-uWK8BghapGgAaIrr8ujFdRoFuiBcwF0vQr2WW1s0BvQ="
     },
     "pdb": {
-      "HealthcareChatbot.pdb": "sha256-Zx8t0q202oy/vFGlUxjsO9vCN27v6dxxUtm+hsORdmU="
+      "HealthcareChatbot.pdb": "sha256-LZjqs9WYseZhsboDpQXP4FZ9uB4+CeiK/4qwmXBreuA="
     }
   },
   "cacheBootResources": true,

@@ -1,165 +1,54 @@
 ﻿@page "/"
 @using MudBlazor
-@inject ISnackbar Snackbar
-@inject HttpClient Http
 @inject NavigationManager NavigationManager
 
-<MudContainer MaxWidth="MaxWidth.Large" Class="mt-16">
-    <MudText Typo="Typo.h3" Class="mb-8" Align="Align.Center">Healthcare Assistant</MudText>
-    
-    <MudGrid>
-        <MudItem xs="12" sm="6">
-            <MudCard Class="mb-6">
-                <MudCardHeader>
-                    <MudText Typo="Typo.h5">Quick Health Information</MudText>
-                </MudCardHeader>
-                <MudCardContent>
-                    <MudList>
-                        @foreach (var query in SampleQueries)
-                        {
-                            <MudListItem Icon="@Icons.Material.Filled.Healing" OnClick="@(() => SelectQuery(query))">
-                                @query
-                            </MudListItem>
-                        }
-                    </MudList>
-                </MudCardContent>
-            </MudCard>
-        </MudItem>
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-16">
+    <MudPaper Class="pa-4" Elevation="3">
+        <MudText Typo="Typo.h3" Class="mb-8" Align="Align.Center">Healthcare Assistant</MudText>
+        
+        <MudGrid>
+            <MudItem xs="12" sm="6">
+                <MudCard Class="mb-4">
+                    <MudCardHeader>
+                        <MudText Typo="Typo.h5">Medicine Recommendation</MudText>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudText>Get personalized medicine recommendations based on your symptoms</MudText>
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Color="Color.Primary" 
+                                 Variant="Variant.Filled" 
+                                 FullWidth="true"
+                                 OnClick="@(() => NavigationManager.NavigateTo("/medicine"))">
+                            Get Started
+                        </MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
 
-        <MudItem xs="12" sm="6">
-            <MudCard>
-                <MudCardHeader>
-                    <MudText Typo="Typo.h5">Health Chat</MudText>
-                </MudCardHeader>
-                <MudCardContent Style="max-height: 400px; overflow-y: auto;">
-                    @foreach (var message in ChatMessages)
-                    {
-                        <MudPaper Class="@(message.IsUser ? "d-flex flex-row-reverse mb-2" : "d-flex flex-row mb-2")" Elevation="0">
-                            <MudPaper Class="@(message.IsUser ? "ml-auto pa-3 rounded-lg" : "mr-auto pa-3 rounded-lg")"
-                                     Style="@(message.IsUser ? "background-color: var(--mud-palette-primary-lighten); max-width: 80%;" : "background-color: var(--mud-palette-surface); max-width: 80%;")"
-                                     Elevation="0">
-                                <MudText>@message.Content</MudText>
-                            </MudPaper>
-                        </MudPaper>
-                    }
-                    @if (IsLoading)
-                    {
-                        <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
-                    }
-                </MudCardContent>
-                <MudCardActions>
-                    <MudTextField @bind-Value="CurrentMessage" 
-                                Label="Ask a health-related question"
-                                Variant="Variant.Outlined"
-                                Class="mr-2 flex-grow-1"
-                                DisableUnderLine="true"
-                                Immediate="true"
-                                OnKeyDown="@OnKeyDown" />
-                    <MudButton Color="Color.Primary" 
-                              Variant="Variant.Filled" 
-                              OnClick="SendMessage"
-                              Disabled="@(IsLoading || string.IsNullOrWhiteSpace(CurrentMessage))">
-                        Send
-                    </MudButton>
-                </MudCardActions>
-            </MudCard>
-        </MudItem>
-    </MudGrid>
+            <MudItem xs="12" sm="6">
+                <MudCard Class="mb-4">
+                    <MudCardHeader>
+                        <MudText Typo="Typo.h5">Health Assistant</MudText>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudText>Chat with our AI assistant about your health concerns and symptoms</MudText>
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudButton Color="Color.Primary" 
+                                 Variant="Variant.Filled" 
+                                 FullWidth="true"
+                                 OnClick="@(() => NavigationManager.NavigateTo("/symptoms"))">
+                            Start Chat
+                        </MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
 
-    <MudPaper Class="mt-8 pa-4" Elevation="0">
-        <MudText Typo="Typo.body2" Class="mud-text-secondary">
+        <MudText Typo="Typo.body2" Class="mt-8" Align="Align.Center">
             Disclaimer: This healthcare assistant provides general information and should not be considered as medical advice. 
             Always consult with a qualified healthcare professional for specific medical concerns.
         </MudText>
     </MudPaper>
 </MudContainer>
-
-@code {
-    private List<string> SampleQueries = new();
-    private List<ChatMessage> ChatMessages = new();
-    private string CurrentMessage = "";
-    private bool IsLoading = false;
-
-    protected override async Task OnInitializedAsync()
-    {
-        try
-        {
-            SampleQueries = await Http.GetFromJsonAsync<List<string>>("http://localhost:8000/generate-sample-queries") 
-                           ?? new List<string>();
-        }
-        catch (Exception ex)
-        {
-            Snackbar.Add("Failed to load sample queries", Severity.Error);
-            Console.WriteLine($"Error loading sample queries: {ex.Message}");
-        }
-    }
-
-    private async Task SendMessage()
-    {
-        if (string.IsNullOrWhiteSpace(CurrentMessage)) return;
-
-        var userMessage = CurrentMessage;
-        ChatMessages.Add(new ChatMessage { Content = userMessage, IsUser = true });
-        CurrentMessage = "";
-        IsLoading = true;
-        StateHasChanged();
-
-        try
-        {
-            var response = await Http.PostAsJsonAsync("http://localhost:8000/generate-response", 
-                new { message = userMessage });
-            
-            if (response.IsSuccessStatusCode)
-            {
-                var result = await response.Content.ReadFromJsonAsync<OutputModel>();
-                ChatMessages.Add(new ChatMessage { Content = result?.Output ?? "No response received", IsUser = false });
-            }
-            else
-            {
-                ChatMessages.Add(new ChatMessage { 
-                    Content = "I apologize, but I couldn't process your request at this time. Please try again.", 
-                    IsUser = false 
-                });
-                Snackbar.Add("Failed to get response from the server", Severity.Error);
-            }
-        }
-        catch (Exception ex)
-        {
-            ChatMessages.Add(new ChatMessage { 
-                Content = "I apologize, but there was an error processing your request. Please try again.", 
-                IsUser = false 
-            });
-            Snackbar.Add($"Error: {ex.Message}", Severity.Error);
-        }
-        finally
-        {
-            IsLoading = false;
-            StateHasChanged();
-        }
-    }
-
-    private void SelectQuery(string query)
-    {
-        CurrentMessage = query;
-        StateHasChanged();
-    }
-
-    private async Task OnKeyDown(KeyboardEventArgs e)
-    {
-        if (e.Key == "Enter" && !string.IsNullOrWhiteSpace(CurrentMessage) && !IsLoading)
-        {
-            await SendMessage();
-        }
-    }
-
-    private class ChatMessage
-    {
-        public string Content { get; set; } = "";
-        public bool IsUser { get; set; }
-    }
-
-    private class OutputModel
-    {
-        public string Output { get; set; } = "";
-    }
-}
